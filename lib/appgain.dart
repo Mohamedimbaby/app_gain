@@ -41,19 +41,16 @@ class Appgain {
 
   Future initAppgainSDK(Map data) async {
     try {
-      // var data =  {'appId':'value1','apiKey':'value1','configure':'value1'};
       await appgainPlatform
           .invokeMethod(_initalizeAppgainSDK, data)
           .then((result) {
         //add what you like here
         print(result);
-        // TextFieldAlertDialog().showAlertDialog( result.toString());
-        TextFieldAlertDialog().showAlertDialog("success");
-
+        TextFieldAlertDialog().showAlertDialog( result.toString());
 
       });
     } on PlatformException catch (e) {
-      print(e.message);
+      print("===================" + e.message);
     }
   }
 
@@ -73,7 +70,7 @@ class Appgain {
 
       });
     } on PlatformException catch (e) {
-      print(e.message);
+      print( "========================================= "+ e.message);
     }
   }
 
@@ -87,9 +84,10 @@ class Appgain {
           .invokeMethod(_createMatchLink, '')
           .then((result) {
         //add what you like here
-        print(result);
+        print("========= "+result);
+
         // TextFieldAlertDialog().showAlertDialog( result.toString());
-        TextFieldAlertDialog().showAlertDialog("success");
+        TextFieldAlertDialog().showAlertDialog(result.toString());
 
       });
     } on PlatformException catch (e) {
@@ -214,7 +212,7 @@ class Appgain {
 
   Future enableReciveNotification() async {
     try {
-      var data = {'enable':1,'type':'value'};
+      var data = {'enable':true,'type':'value'};
       await appgainPlatform
           .invokeMethod(_enableReciveNotificationWith, data)
           .then((result) {

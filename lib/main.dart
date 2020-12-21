@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
   Future _initSDK() async {
-    var data =  {'appId':'5fdf247376506b000b7d6dd2','apiKey':'3c2cfbf5ab6fb628d374aedd4ca00efc9c71cbc0b7233da26d316f63b80da058','configure':true};
+    var data =  {'appId':'5fe07d289c2095000c3bc8b7','apiKey':'5890d8d2cc4c8501a437f59f79efe2440f1e7c0e86edf6aec7bcef2bac7c2d5b','configure':true};
 
     Appgain().initAppgainSDK(data);
 
@@ -217,8 +217,8 @@ class _MyHomePageState extends State<MyHomePage> {
 //                shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
 //            )             ,
             RaisedButton(
-                child: Text("ADD PURCHASE"),
-                onPressed: _addPurchase,
+                child: Text("Enable Receive Notification"),
+                onPressed: _enableReciveNotification,
                 shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
             )             ,
 

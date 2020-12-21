@@ -3,6 +3,7 @@ package com.example.appgainsdk
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
@@ -58,9 +59,8 @@ class MainActivity: FlutterActivity() {
                                     result.error("", "", Gson().toJson(failure))
 
                                 }
-
                                 override fun onSuccess(data: Void?) {
-                                    result.success(null)
+                                    result.success(data.toString())
                                 }
                             }
                     )
@@ -142,7 +142,7 @@ class MainActivity: FlutterActivity() {
                     val channel: String = call.argument<String>("type")?:""
                     Appgain.enableNotifications(enable, channel, object : AppgainDataCallback<Void> {
                         override fun onSuccess(data: Void?) {
-                            result.success(null)
+                            result.success("done")
                         }
 
                         override fun onFailure(failure: BaseResponse?) {
@@ -155,7 +155,23 @@ class MainActivity: FlutterActivity() {
                     val data: String = call.argument<String>("item")?:""
                     Appgain.createNotificationChannel(channel, data, object : AppgainDataCallback<Void> {
                         override fun onSuccess(data: Void?) {
-                            result.success(null)
+                            result.success("done")
+                            print("success")
+                        }
+
+                        override fun onFailure(failure: BaseResponse?) {
+                            result.error("", "", Gson().toJson(failure))
+                            print(Gson().toJson(failure))
+
+                        }
+                    })
+                }
+                "deep_link" -> {
+                    val channel: String = call.argument<String>("notificationType")?:""
+                    val data: String = call.argument<String>("item")?:""
+                    Appgain.createNotificationChannel(channel, data, object : AppgainDataCallback<Void> {
+                        override fun onSuccess(data: Void?) {
+                            result.success("done")
                             print("success")
                         }
 
@@ -188,7 +204,7 @@ class MainActivity: FlutterActivity() {
 
 class PushReceiver : AppgainPushReceiver() {
     override fun onReceive(context: Context?, receiveStatus: ReceiveStatus?, intent: Intent?) {
-
+            Toast.makeText(context,"get Notified", Toast.LENGTH_LONG).show()
     }
 }
 class FlutterTestApp : FlutterApplication(), LifecycleObserver {
