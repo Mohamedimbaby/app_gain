@@ -60,7 +60,7 @@ class MainActivity: FlutterActivity() {
 
                                 }
                                 override fun onSuccess(data: Void?) {
-                                    result.success(data.toString())
+                                    result.success("intialized Success")
                                 }
                             }
                     )
